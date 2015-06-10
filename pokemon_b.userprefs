@@ -1,0 +1,15 @@
+﻿<Properties StartupItem="pokemon_b/pokemon_b.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="pokemon_b/Program.cs">
+    <Files>
+      <File FileName="pokemon_b/Classes/Pokemon.cs" Line="44" Column="76" />
+      <File FileName="pokemon_b/Program.cs" Line="37" Column="2" />
+      <File FileName="pokemon_b/Classes/Battle.cs" Line="37" Column="38" />
+      <File FileName="pokemon_b/Classes/Trainer.cs" Line="28" Column="42" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
