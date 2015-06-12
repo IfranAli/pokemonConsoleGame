@@ -10,10 +10,13 @@ namespace pokemon_b
 			Pokemon.IV iv = new Pokemon.IV (10, 10, 10, 10, 10, 5);
 			Pokemon.Stat stat = new Pokemon.Stat (iv, 50, 10, 10, 10, 10, 10, 5);
 			Pokemon bulbasaur = new Pokemon ("Bulbasaur", stat);
+			bulbasaur.PokemonMovePool.AddAttack(new Attack(Attack.Type.Grass, "Vine Whip", 35));
+			bulbasaur.Weakness.Add (Attack.Type.Fire);
 
 			iv = new Pokemon.IV (15, 10, 10, 10, 10, 10);
 			stat = new Pokemon.Stat(iv ,70, 10, 10, 10, 10, 10, 10);
 			Pokemon charmander = new Pokemon ("Charmander", stat);
+			charmander.PokemonMovePool.AddAttack(new Attack(Attack.Type.Fire, "Ember", 30));
 
 			Pokemon zangoose = new Pokemon("Zangoose", new Pokemon.Stat(
 				new Pokemon.IV(10,10,10,10,10,10), 50, 10,10,10,10,10,10)

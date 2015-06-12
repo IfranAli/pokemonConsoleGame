@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace pokemon_b
 {
@@ -7,30 +8,47 @@ namespace pokemon_b
 		public String Name;
 		public Stat StatInfo;
 		public int Health;
+		public List<Attack.Type> Weakness;
 
 		public bool isFainted() {
 			return Health < 1;
 		}
 
 		// For now pokemon only have one move.
-		public Attack AttackMove;
+		//public Attack AttackMove;
 
-		public Pokemon (String name, Stat stat )
+		public MovePool PokemonMovePool;
+
+		public Pokemon (String name, Stat stat)
 		{
 			Name = name;
 			StatInfo = stat;
 			Health = stat._Health;
-			AttackMove = new Attack (this, Attack.Type.Normal, 10);
+			this.PokemonMovePool = new MovePool(this);
+			this.Weakness = new List<Attack.Type> ();
 		}
 
 		public void PerformAttack(Pokemon p){
-			Console.WriteLine ("{0} Attacked {1}!", Name, p.Name);
-			p.TakeDamage (this.AttackMove);
+			Attack attack = this.PokemonMovePool.GetAttack ();
+			Console.WriteLine ("{0} Used {2} on {1}!", Name, p.Name, attack.Name);
+			p.TakeDamage (attack);
+		}
+
+		public double getDamageMultiplier(Attack.Type type) {
+			if (Weakness == null)
+				return 1.0;
+			if(Weakness.Contains(type)) {
+				Console.WriteLine("Super Effective! x2 Damage");
+				return 2.0;
+			}
+			return 1.0;
 		}
 			
 		public void TakeDamage(Attack attack) {
-			this.Health -= attack.Damage;
-			Console.WriteLine ("{0} took {1} Damage! HP: %{2}", Name, attack.Damage, CalculateHealth());
+			double multiplier = getDamageMultiplier (attack.AttackType);
+			int dmg = (int) (attack.Damage * multiplier);
+			this.Health -= dmg;
+			Console.WriteLine ("{0} took {1} Damage! HP: %{2}", Name, dmg, CalculateHealth());
 			if (isFainted()) {
 				Console.WriteLine ("{0} Fainted!", Name);
 			}

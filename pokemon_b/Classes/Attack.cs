@@ -14,12 +14,22 @@ namespace pokemon_b
 		public Pokemon SourcePokemon;
 		public int Damage;
 		public Type AttackType;
+		public String Name;
 
-		public Attack (Pokemon sourcePokemon, Type attackType, int damage)
+		public Attack (Type attackType, String attackName, int damage)
 		{
+			this.Name = attackName;
+			this.AttackType = attackType;
+			this.Damage = damage;
+		}
+
+		public Attack (Pokemon sourcePokemon, Type attackType, String attackName, int damage)
+		{
+			this.Name = attackName;
 			this.SourcePokemon = sourcePokemon;
 			this.AttackType = attackType;
 			this.Damage = damage;
+			this.SourcePokemon = sourcePokemon;
 		}
 	}
 }
