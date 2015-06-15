@@ -40,6 +40,7 @@
     <Compile Include="Classes\Battle.cs" />
     <Compile Include="Classes\Attack.cs" />
     <Compile Include="Classes\MovePool.cs" />
+    <Compile Include="Classes\PokeGarden.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

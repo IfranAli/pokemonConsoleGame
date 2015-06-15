@@ -9,13 +9,27 @@ namespace pokemon_b
 		public Stat StatInfo;
 		public int Health;
 		public List<Attack.Type> Weakness;
+		public Condition pkmnCondition;
+
+		public void SetCondition(Condition c) {
+			if (this.pkmnCondition.Equals(c)) {
+				Console.WriteLine ("{0} is already {1}", Name, c);
+				return;
+			}
+			pkmnCondition = c;
+			Console.WriteLine ("{0} is {1}", Name, c);
+		}
+
+		public enum Condition
+		{
+			Poison, Sleep,
+			Para, Healthy,
+			Burned
+		};
 
 		public bool isFainted() {
 			return Health < 1;
 		}
-
-		// For now pokemon only have one move.
-		//public Attack AttackMove;
 
 		public MovePool PokemonMovePool;
 
@@ -29,19 +43,31 @@ namespace pokemon_b
 		}
 
 		public void PerformAttack(Pokemon p){
+			preMove ();
 			Attack attack = this.PokemonMovePool.GetAttack ();
 			Console.WriteLine ("{0} Used {2} on {1}!", Name, p.Name, attack.Name);
+			attack.ApplyEffect (p);
 			p.TakeDamage (attack);
 		}
 
+		void preMove() {
+			if (pkmnCondition.Equals (Condition.Burned)) {
+				Health -= 10;
+				Console.WriteLine ("{0} is badly burned.", Name);
+			}
+		}
+
 		public double getDamageMultiplier(Attack.Type type) {
-			if (Weakness == null)
-				return 1.0;
 			if(Weakness.Contains(type)) {
 				Console.WriteLine("Super Effective! x2 Damage");
 				return 2.0;
 			}
 			return 1.0;
+		}
+
+		public void TakeRecoilDamage(Attack att, int dmg) {
+			Health -= dmg;
+			Console.WriteLine ("{0} took {1} recoil damage from {2}. %{3}", Name, dmg, att.Name, CalculateHealth());
 		}
 			
 		public void TakeDamage(Attack attack) {

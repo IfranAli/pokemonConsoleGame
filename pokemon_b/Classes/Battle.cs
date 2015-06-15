@@ -5,6 +5,7 @@ namespace pokemon_b
 	public class Battle
 	{
 		Trainer TrainerOne, TrainerTwo;
+		public int TurnsPassed;
 
 		public Battle (Trainer trainerOne, Trainer trainerTwo)
 		{
@@ -32,6 +33,8 @@ namespace pokemon_b
 
 		private Boolean turn(Trainer trainer, Trainer opponent) {
 			try {
+				TurnsPassed++;
+				Console.WriteLine("\n{0} Turn {1}\n", trainer.TrainerName, TurnsPassed);
 				trainer.PerformTurn (opponent);
 				return false;
 			} catch (InvalidOperationException) {
