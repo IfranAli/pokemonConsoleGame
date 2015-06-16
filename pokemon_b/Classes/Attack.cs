@@ -59,6 +59,9 @@ namespace pokemon_b
 				//base.ApplyEffect (p);
 			}
 		}
+		public class FireBlast : Attack {
+			public FireBlast() :base(Attack.Type.Fire, "Fire Blast", 90) {}
+		}
 		public class VineWhip : Attack {
 			public VineWhip() : base(Attack.Type.Grass, "Vine Whip", 35) {}
 		}
@@ -73,6 +76,9 @@ namespace pokemon_b
 		}
 		public class Tackle : Attack {
 			public Tackle() : base(Type.Normal, "Tackle", 20) {}
+		}
+		public class Peck : Attack {
+			public Peck() : base(Type.Flying, "Peck", 30) {}
 		}
 	}
 }

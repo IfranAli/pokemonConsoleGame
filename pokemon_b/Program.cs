@@ -6,24 +6,22 @@ namespace pokemon_b
 	{
 		public static void Main (string[] args)
 		{
-//			Console.WriteLine (new PokeGarden.Tirwig ().getInfo ());
-//			Console.WriteLine (new PokeGarden.Zangoose ().getInfo ());
-//			Console.WriteLine (new PokeGarden.Charmander ().getInfo ());
-
+			var pg = new PokeGarden ();
 			// Assign Pokemon to Trainer object.
-			Trainer red = new Trainer("Red");
+			Trainer red = new Player("Red");
 			red.AddPokemon(new PokeGarden.Bulbasaur());
 			red.AddPokemon (new PokeGarden.Charmander());
+			//red.AddPokemon(pg.Generate("MegaMewTwo", 80));
+			//red.AddPokemon(pg.Generate("Deoxys", 80));
+
 			Trainer blue = new Trainer ("Blue");
 			blue.AddPokemon (new PokeGarden.Tirwig());
 			blue.AddPokemon (new PokeGarden.Zangoose());
+			//blue.AddPokemon(pg.Generate("Mew", 80));
+			//blue.AddPokemon(pg.Generate("Jirachi", 80));
 
 			// Pass Trainers to Battle object.
 			new Battle(red, blue);
-
-			//Console.WriteLine (bulbasaur.getInfo ());
-			//Console.WriteLine (charmander.getInfo ());
-			//Console.WriteLine (zangoose.getInfo ());
 		}
 	}
 }

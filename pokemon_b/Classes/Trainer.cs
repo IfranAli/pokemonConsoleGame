@@ -31,7 +31,7 @@ namespace pokemon_b
 			return x;
 		}
 
-		public void PerformTurn(Trainer opponent) {
+		virtual public void PerformTurn(Trainer opponent) {
 			if (OnField.isFainted ()) {
 				try {
 					GetNextUsablePokemon ();
@@ -39,7 +39,15 @@ namespace pokemon_b
 					throw ex;
 				}
 			} else {
-				OnField.PerformAttack (opponent.OnField);
+				var highestDMG = OnField.PokemonMovePool.getHighestDamage ();
+				var enemyweakness = OnField.PokemonMovePool.getEnemyWeakestTo (opponent.OnField);
+				if (enemyweakness != null) {
+					if ((enemyweakness.Damage * 2.0) > highestDMG.Damage) {
+						OnField.PerformAttack (opponent.OnField, enemyweakness);
+						return;
+					}
+				}
+				OnField.PerformAttack (opponent.OnField, highestDMG);
 			}
 		}
 	}

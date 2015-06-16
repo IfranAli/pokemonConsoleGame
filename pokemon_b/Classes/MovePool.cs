@@ -32,8 +32,21 @@ namespace pokemon_b
 			return a;
 		}
 
-		private Attack getHighestDamage() {
+		public Attack getHighestDamage() {
 			return Attacks.Aggregate ((b1, b2) => b2.Damage > b1.Damage ? b2 : b1);
+		}
+
+		public Attack getEnemyWeakestTo(Pokemon p) {
+			var weaknesses = p.Weakness;
+			var allAttacks = Attacks.FindAll (e => e.Damage > 0);
+
+			var xy = allAttacks.FindAll (e => weaknesses.Contains (e.AttackType));
+
+			var highestDMG = allAttacks.Aggregate ((b1, b2) => b2.Damage > b1.Damage ? b2 : b1);
+			if (xy != null) {
+				return xy.FirstOrDefault();
+			}
+			return highestDMG;
 		}
 	}
 }

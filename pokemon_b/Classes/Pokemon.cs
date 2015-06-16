@@ -42,9 +42,18 @@ namespace pokemon_b
 			this.Weakness = new List<Attack.Type> ();
 		}
 
+		public void PerformAttack(Pokemon p, Attack attack) {
+			preMove ();
+
+			Console.WriteLine ("{0} Used {2} on {1}!", Name, p.Name, attack.Name);
+			attack.ApplyEffect (p);
+			p.TakeDamage (attack);
+		}
+
 		public void PerformAttack(Pokemon p){
 			preMove ();
 			Attack attack = this.PokemonMovePool.GetAttack ();
+
 			Console.WriteLine ("{0} Used {2} on {1}!", Name, p.Name, attack.Name);
 			attack.ApplyEffect (p);
 			p.TakeDamage (attack);
