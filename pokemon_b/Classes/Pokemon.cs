@@ -44,7 +44,6 @@ namespace pokemon_b
 
 		public void PerformAttack(Pokemon p, Attack attack) {
 			preMove ();
-
 			Console.WriteLine ("{0} Used {2} on {1}!", Name, p.Name, attack.Name);
 			attack.ApplyEffect (p);
 			p.TakeDamage (attack);
@@ -76,21 +75,22 @@ namespace pokemon_b
 
 		public void TakeRecoilDamage(Attack att, int dmg) {
 			Health -= dmg;
-			Console.WriteLine ("{0} took {1} recoil damage from {2}. %{3}", Name, dmg, att.Name, CalculateHealth());
+			Console.WriteLine ("{0} took {1} recoil damage from {2}. HP: {3}%", Name, dmg, att.Name, CalculateHealth());
 		}
 			
 		public void TakeDamage(Attack attack) {
 			double multiplier = getDamageMultiplier (attack.AttackType);
 			int dmg = (int) (attack.Damage * multiplier);
 			this.Health -= dmg;
-			Console.WriteLine ("{0} took {1} Damage! HP: %{2}", Name, dmg, CalculateHealth());
+			Console.WriteLine ("{0} took {1} Damage! HP: {2}%", Name, dmg, CalculateHealth());
 			if (isFainted()) {
 				Console.WriteLine ("{0} Fainted!", Name);
 			}
 		}
 
 		public int CalculateHealth() {
-			return Convert.ToInt32(((double)this.Health / StatInfo._Health) * 100);
+			int hp = Convert.ToInt32 (((double)this.Health / StatInfo._Health) * 100); 
+			return (hp < 0) ? 0 : hp; // make sure health can't be negative
 		}
 
 		public String getInfo() {
@@ -128,9 +128,9 @@ namespace pokemon_b
 				var ev	= 20;
 				Level	= level;
 
-				_Health	=			  ((_Health 	* 2 + IV._HP 	 + (ev / 4)) * Level / 100 + 10 + Level);
+				_Health	=			  ((_Health 	* 2 + IV._HP 	+ (ev / 4)) * Level / 100 + 10 + Level);
 				_SpDefence = 	(int) (((_SpDefence * 2 + IV._SpDef + (ev / 4)) * Level / 100 + 5) * 1.0);
-				_Defence = 		(int) (((_Defence	* 2 + IV._Def	 + (ev / 4)) * Level / 100 + 5) * 1.0);
+				_Defence = 		(int) (((_Defence	* 2 + IV._Def	+ (ev / 4)) * Level / 100 + 5) * 1.0);
 				_SpAttack =		(int) (((_SpAttack	* 2 + IV._SpAtt + (ev / 4)) * Level / 100 + 5) * 1.0);
 				_Attack =	    (int) (((_Attack	* 2 + IV._Att	 + (ev / 4)) * Level / 100 + 5) * 1.0);
 				_Speed =		(int) (((_Speed		* 2 + IV._Speed + (ev / 4)) * Level / 100 + 5) * 1.0);

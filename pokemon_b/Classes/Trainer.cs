@@ -15,6 +15,17 @@ namespace pokemon_b
 			TrainerName = trainerName;
 		}
 
+
+		public void trainerFontColour() {
+			if (TrainerName.ToUpper() == "RED") {
+				Console.ForegroundColor = ConsoleColor.Red;
+			} else if (TrainerName.ToUpper() == "BLUE") {
+				Console.ForegroundColor = ConsoleColor.Blue;
+			} else {
+				Console.ForegroundColor = ConsoleColor.White;
+			}
+		}
+
 		public void AddPokemon(Pokemon pokemon){
 			Pokemons.Add (pokemon);
 		}
@@ -27,7 +38,12 @@ namespace pokemon_b
 			} catch (NullReferenceException) {
 				throw new InvalidOperationException();
 			}
-			Console.WriteLine ("{0} sent out {1}", TrainerName, OnField.Name);
+			this.trainerFontColour ();
+			Console.Write(TrainerName);
+			Console.ForegroundColor = ConsoleColor.White;
+			Console.Write(" sent out ");
+			Console.Write("{0}\n", OnField.Name);
+			Console.ForegroundColor = ConsoleColor.White;
 			return x;
 		}
 

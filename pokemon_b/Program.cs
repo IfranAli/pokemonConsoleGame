@@ -6,7 +6,7 @@ namespace pokemon_b
 	{
 		public static void Main (string[] args)
 		{
-			var pg = new PokeGarden ();
+			//var pg = new PokeGarden ();
 			// Assign Pokemon to Trainer object.
 			Trainer red = new Player("Red");
 			red.AddPokemon(new PokeGarden.Bulbasaur());
