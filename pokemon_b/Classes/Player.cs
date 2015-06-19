@@ -28,13 +28,15 @@ namespace pokemon_b
 				Console.WriteLine ("{0}\t{1}\t{2}\t{3}", OnField.PokemonMovePool.Attacks.IndexOf(a), a.Name,
 					a.Damage, a.AttackType);
 			}
-			Console.WriteLine ("Enter option: ");
+			Console.Write("Select Move: ");
 
+			string input = Console.ReadLine ();
+			int move = int.Parse (input);
 
-			int input = int.Parse(Console.ReadLine());
-			Console.WriteLine (input);
+			//Console.WriteLine (input); // hmm why do this ? 
+			Console.Clear();
 
-			Attack attack = OnField.PokemonMovePool.Attacks [input];
+			Attack attack = OnField.PokemonMovePool.Attacks [move];
 
 			OnField.PerformAttack(opponent.OnField, attack);
 		}

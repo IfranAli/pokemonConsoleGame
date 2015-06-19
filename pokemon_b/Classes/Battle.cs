@@ -11,7 +11,17 @@ namespace pokemon_b
 		{
 			TrainerOne = trainerOne;
 			TrainerTwo = trainerTwo;
-			Console.WriteLine ("{0} and {1} Entered a Battle!", TrainerOne.TrainerName, TrainerTwo.TrainerName);
+
+			Console.Clear();
+
+			TrainerOne.trainerFontColour();
+			Console.Write ("{0}", TrainerOne.TrainerName);
+			Console.ForegroundColor = ConsoleColor.White;
+			Console.Write(" and ");
+			TrainerTwo.trainerFontColour();
+			Console.Write("{0} ", TrainerTwo.TrainerName);
+			Console.ForegroundColor = ConsoleColor.White;
+			Console.Write("Entered a Battle!\n\n");
 
 			TrainerOne.GetNextUsablePokemon ();
 			trainerTwo.GetNextUsablePokemon ();
@@ -20,11 +30,17 @@ namespace pokemon_b
 			// If pokemon fainted earlier, determine first move by pokemon speed.
 			while (true) {
 				if (turn (TrainerOne, TrainerTwo)) {
-					Console.WriteLine ("{0} Has Won!", TrainerTwo.TrainerName);
+					TrainerTwo.trainerFontColour();
+					Console.Write("{0} ");
+					Console.ForegroundColor = ConsoleColor.White;
+					Console.Write("Has Won!\n", TrainerTwo.TrainerName);
 					break;
 				}
 				if(turn (TrainerTwo, TrainerOne)) {
-					Console.WriteLine ("{0} Has Won!", TrainerOne.TrainerName);
+					TrainerOne.trainerFontColour();
+					Console.Write("{0} ");
+					Console.ForegroundColor = ConsoleColor.White;
+					Console.Write("Has Won!\n", TrainerOne.TrainerName);
 					break;
 				}
 			}
@@ -34,7 +50,9 @@ namespace pokemon_b
 		private Boolean turn(Trainer trainer, Trainer opponent) {
 			try {
 				TurnsPassed++;
-				Console.WriteLine("\n{0} Turn {1}\n", trainer.TrainerName, TurnsPassed);
+				trainer.trainerFontColour();
+				Console.WriteLine("\n{0} : Turn {1}\n--------------\n", trainer.TrainerName, TurnsPassed);
+				Console.ForegroundColor = ConsoleColor.White;
 				trainer.PerformTurn (opponent);
 				return false;
 			} catch (InvalidOperationException) {
