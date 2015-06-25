@@ -1,15 +1,15 @@
 ﻿<Properties StartupItem="pokemon_b/pokemon_b.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="pokemon_b/Classes/Pokemon.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="pokemon_b/Classes/Battle.cs">
     <Files>
-      <File FileName="pokemon_b/Classes/Pokemon.cs" Line="47" Column="31" />
-      <File FileName="pokemon_b/Classes/Battle.cs" Line="58" Column="41" />
-      <File FileName="pokemon_b/Classes/Trainer.cs" Line="25" Column="5" />
-      <File FileName="pokemon_b/Classes/Player.cs" Line="44" Column="2" />
-      <File FileName="pokemon_b/Classes/Attack.cs" Line="81" Column="48" />
-      <File FileName="pokemon_b/Classes/MovePool.cs" Line="47" Column="31" />
-      <File FileName="pokemon_b/Classes/PokeGarden.cs" Line="24" Column="28" />
-      <File FileName="pokemon_b/Program.cs" Line="15" Column="35" />
+      <File FileName="pokemon_b/Classes/Pokemon.cs" Line="92" Column="23" />
+      <File FileName="pokemon_b/Classes/Battle.cs" Line="31" Column="18" />
+      <File FileName="pokemon_b/Classes/Trainer.cs" Line="54" Column="30" />
+      <File FileName="pokemon_b/Classes/Player.cs" Line="1" Column="1" />
+      <File FileName="pokemon_b/Classes/Attack.cs" Line="1" Column="1" />
+      <File FileName="pokemon_b/Classes/MovePool.cs" Line="1" Column="1" />
+      <File FileName="pokemon_b/Classes/PokeGarden.cs" Line="1" Column="1" />
+      <File FileName="pokemon_b/Program.cs" Line="1" Column="1" />
       <File FileName="pokemon_b/Properties/AssemblyInfo.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

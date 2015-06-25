@@ -51,6 +51,7 @@ namespace pokemon_b
 			if (OnField.isFainted ()) {
 				try {
 					GetNextUsablePokemon ();
+					throw new MyException();
 				} catch (InvalidOperationException ex) {
 					throw ex;
 				}
@@ -64,6 +65,25 @@ namespace pokemon_b
 					}
 				}
 				OnField.PerformAttack (opponent.OnField, highestDMG);
+			}
+		}
+
+		public class MyException : Exception
+		{
+			public MyException ()
+			{
+			}
+			
+			public MyException (string message) : base (message)
+			{
+			}
+
+			public MyException (string message, Exception inner) : base (message, inner)
+			{
+			}
+			
+			protected MyException (System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base (info, context)
+			{
 			}
 		}
 	}

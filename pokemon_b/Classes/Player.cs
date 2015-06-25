@@ -33,9 +33,6 @@ namespace pokemon_b
 			string input = Console.ReadLine ();
 			int move = int.Parse (input);
 
-			//Console.WriteLine (input); // hmm why do this ? 
-			Console.Clear();
-
 			Attack attack = OnField.PokemonMovePool.Attacks [move];
 
 			OnField.PerformAttack(opponent.OnField, attack);

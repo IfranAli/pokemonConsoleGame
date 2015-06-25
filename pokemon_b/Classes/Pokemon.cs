@@ -12,7 +12,7 @@ namespace pokemon_b
 		public Condition pkmnCondition;
 
 		public void SetCondition(Condition c) {
-			if (this.pkmnCondition.Equals(c)) {
+			if (pkmnCondition.Equals(c)) {
 				Console.WriteLine ("{0} is already {1}", Name, c);
 				return;
 			}
@@ -86,6 +86,20 @@ namespace pokemon_b
 			if (isFainted()) {
 				Console.WriteLine ("{0} Fainted!", Name);
 			}
+		}
+
+		public String GenHealthBar() {
+			String bar = "HP:";
+			int remaining = (int)(15 * (CalculateHealth() / 100.0));
+			for (int i = 0; i < 15; i++) {
+				if (i <= remaining) {
+					bar += "#";
+				} else {
+					bar += "_";
+				}
+			}
+			bar += String.Format (" {0}%", CalculateHealth ());
+			return bar;
 		}
 
 		public int CalculateHealth() {

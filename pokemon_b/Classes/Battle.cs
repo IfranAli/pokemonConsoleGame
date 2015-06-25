@@ -12,8 +12,6 @@ namespace pokemon_b
 			TrainerOne = trainerOne;
 			TrainerTwo = trainerTwo;
 
-			Console.Clear();
-
 			TrainerOne.trainerFontColour();
 			Console.Write ("{0}", TrainerOne.TrainerName);
 			Console.ForegroundColor = ConsoleColor.White;
@@ -28,19 +26,25 @@ namespace pokemon_b
 
 			// Determine first to move by pokemon speed.
 			// If pokemon fainted earlier, determine first move by pokemon speed.
+			Trainer trainer = null;
+			Trainer trainer2 = null;
 			while (true) {
-				if (turn (TrainerOne, TrainerTwo)) {
-					TrainerTwo.trainerFontColour();
-					Console.Write("{0} ");
-					Console.ForegroundColor = ConsoleColor.White;
-					Console.Write("Has Won!\n", TrainerTwo.TrainerName);
-					break;
+				if(TurnsPassed == 0) {
+					// Calculate fitst move by speed.
+					if (TrainerOne.OnField.StatInfo._Speed > TrainerTwo.OnField.StatInfo._Speed) {
+						trainer = TrainerOne;
+						trainer2 = TrainerTwo;
+					} else {
+						trainer = TrainerTwo;
+						trainer2 = trainerOne;
+					}
 				}
-				if(turn (TrainerTwo, TrainerOne)) {
-					TrainerOne.trainerFontColour();
-					Console.Write("{0} ");
+					
+				if (turn (trainer, trainer2)) {
+					trainer.trainerFontColour ();
+					Console.Write ("{0} ");
 					Console.ForegroundColor = ConsoleColor.White;
-					Console.Write("Has Won!\n", TrainerOne.TrainerName);
+					Console.Write ("Has Won!\n", trainer.TrainerName);
 					break;
 				}
 			}
@@ -51,12 +55,17 @@ namespace pokemon_b
 			try {
 				TurnsPassed++;
 				trainer.trainerFontColour();
-				Console.WriteLine("\n{0} : Turn {1}\n--------------\n", trainer.TrainerName, TurnsPassed);
+				Console.WriteLine("\n{0} : Turn {1}\n{2}\n{3}",
+					trainer.TrainerName, TurnsPassed, trainer.OnField.Name,
+					trainer.OnField.GenHealthBar());
 				Console.ForegroundColor = ConsoleColor.White;
 				trainer.PerformTurn (opponent);
 				return false;
 			} catch (InvalidOperationException) {
 				return true;
+			} catch (Trainer.MyException) {
+				Console.WriteLine ("pkmn fainted!");
+				return false;
 			}
 		}
 	}
