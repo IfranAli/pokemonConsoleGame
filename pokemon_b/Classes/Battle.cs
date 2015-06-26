@@ -4,24 +4,20 @@ namespace pokemon_b
 {
 	public class Battle
 	{
-		Trainer TrainerOne, TrainerTwo;
+		Trainer Red, Blue, LastMoved;
 		public int TurnsPassed;
-
-		public Battle (Trainer trainerOne, Trainer trainerTwo)
+		private EventHook mEventHook; 
+		public Battle (EventHook eventHook, Trainer trainerOne, Trainer trainerTwo)
 		{
-			TrainerOne = trainerOne;
-			TrainerTwo = trainerTwo;
+			mEventHook = eventHook;
 
-			TrainerOne.trainerFontColour();
-			Console.Write ("{0}", TrainerOne.TrainerName);
-			Console.ForegroundColor = ConsoleColor.White;
-			Console.Write(" and ");
-			TrainerTwo.trainerFontColour();
-			Console.Write("{0} ", TrainerTwo.TrainerName);
-			Console.ForegroundColor = ConsoleColor.White;
-			Console.Write("Entered a Battle!\n\n");
+			Red = trainerOne;
+			Blue = trainerTwo;
 
-			TrainerOne.GetNextUsablePokemon ();
+			mEventHook.JoinedBattle (Red);
+			mEventHook.JoinedBattle (Blue);
+
+			Red.GetNextUsablePokemon ();
 			trainerTwo.GetNextUsablePokemon ();
 
 			// Determine first to move by pokemon speed.
@@ -29,34 +25,39 @@ namespace pokemon_b
 			Trainer trainer = null;
 			Trainer trainer2 = null;
 			while (true) {
-				if (TurnsPassed == 0) {
-					// Calculate fitst move by speed.
-					if (TrainerOne.OnField.StatInfo._Speed > TrainerTwo.OnField.StatInfo._Speed) {
-						trainer = TrainerOne;
-						trainer2 = TrainerTwo;
+				if (LastMoved == null || Red.OnField.isFainted() || Blue.OnField.isFainted()) {
+					var status = String.Format ("\t{0}:{1}\t{2}:{3}",
+						             Red.OnField.Name, Red.OnField.isFainted (),
+						             Blue.OnField.Name, Blue.OnField.isFainted ());
+					Console.Write ("\n\tChecking Who is faster.\n{0}\n", status);
+					// Calculate first move by speed.
+					if (Red.OnField.StatInfo._Speed > Blue.OnField.StatInfo._Speed) {
+						trainer = Red;
+						trainer2 = Blue;
 					} else {
-						trainer = TrainerTwo;
+						trainer = Blue;
 						trainer2 = trainerOne;
 					}
-				} else {
-					
 				}
-					
+
+				LastMoved = trainer;
 				if (turn (trainer, trainer2)) {
 					trainer.trainerFontColour ();
 					Console.Write ("{0} ");
 					Console.ForegroundColor = ConsoleColor.White;
-					Console.Write ("Has Won!\n", trainer.TrainerName);
+					Console.Write ("{0} Has Won!\n", trainer.TrainerName);
 					break;
 				}
 
-				if (trainer == TrainerOne) {
-					trainer = trainer2;
+				// No trainer should move twice in a row ( excluding some cases )
+				if (LastMoved == Blue) {
+					trainer = Red;
+					trainer2 = Blue;
 				} else {
-					trainer = trainerTwo;
+					trainer = Blue;
+					trainer2 = Red;
 				}
 			}
-
 		}
 
 		private Boolean turn(Trainer trainer, Trainer opponent) {

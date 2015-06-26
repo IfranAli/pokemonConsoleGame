@@ -13,3 +13,7 @@
 /home/panda/Documents/CSharp/pokemonConsoleGame/pokemon_b/bin/Debug/pokemon_b.exe
 /home/panda/Documents/CSharp/pokemonConsoleGame/pokemon_b/obj/x86/Debug/pokemon_b.exe
 /home/panda/Documents/CSharp/pokemonConsoleGame/pokemon_b/obj/x86/Debug/pokemon_b.exe.mdb
+/home/panda/Documents/CSharp/pokemonConsoleGame/pokemon_b/bin/Debug/pokemon_b.dll.mdb
+/home/panda/Documents/CSharp/pokemonConsoleGame/pokemon_b/bin/Debug/pokemon_b.dll
+/home/panda/Documents/CSharp/pokemonConsoleGame/pokemon_b/obj/x86/Debug/pokemon_b.dll
+/home/panda/Documents/CSharp/pokemonConsoleGame/pokemon_b/obj/x86/Debug/pokemon_b.dll.mdb

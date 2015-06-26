@@ -12,20 +12,20 @@ namespace pokemon_b
 			var pokeGarden = new PokeGarden ();
 
 			// Assign Pokemon to Trainer object.
-			var red = new Player("Red");
+			var red = new Player(mEventHook, "Red");
 			red.AddPokemon(new PokeGarden.Bulbasaur());
 			red.AddPokemon (new PokeGarden.Charmander());
 			//red.AddPokemon(pokeGarden.Generate("MegaMewTwo", 80));
 			//red.AddPokemon(pg.Generate("Deoxys", 80));
 
-			var blue = new Trainer ("Blue");
+			var blue = new Trainer (mEventHook, "Blue");
 			blue.AddPokemon (new PokeGarden.Tirwig());
 			blue.AddPokemon (new PokeGarden.Zangoose());
 			//blue.AddPokemon(pokeGarden.Generate("Mew", 80));
 			//blue.AddPokemon(pg.Generate("Jirachi", 80));
 
 			// Pass Trainers to Battle object.
-			new Battle(red, blue);
+			new Battle(mEventHook, red, blue);
 		}
 	}
 }

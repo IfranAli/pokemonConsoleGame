@@ -38,8 +38,8 @@ namespace pokemon_b
 			Name = name;
 			StatInfo = stat;
 			Health = stat._Health;
-			this.PokemonMovePool = new MovePool(this);
-			this.Weakness = new List<Attack.Type> ();
+			PokemonMovePool = new MovePool (this);
+			Weakness = new List<Attack.Type> ();
 		}
 
 		public void PerformAttack(Pokemon p, Attack attack) {
@@ -51,7 +51,7 @@ namespace pokemon_b
 
 		public void PerformAttack(Pokemon p){
 			preMove ();
-			Attack attack = this.PokemonMovePool.GetAttack ();
+			Attack attack = PokemonMovePool.GetAttack ();
 
 			Console.WriteLine ("{0} Used {2} on {1}!", Name, p.Name, attack.Name);
 			attack.ApplyEffect (p);
@@ -81,7 +81,7 @@ namespace pokemon_b
 		public void TakeDamage(Attack attack) {
 			double multiplier = getDamageMultiplier (attack.AttackType);
 			int dmg = (int) (attack.Damage * multiplier);
-			this.Health -= dmg;
+			Health -= dmg;
 			Console.WriteLine ("{0} took {1} Damage! HP: {2}%", Name, dmg, CalculateHealth());
 			if (isFainted()) {
 				Console.WriteLine ("{0} Fainted!", Name);
@@ -92,18 +92,14 @@ namespace pokemon_b
 			String bar = "HP:";
 			int remaining = (int)(15 * (CalculateHealth() / 100.0));
 			for (int i = 0; i < 15; i++) {
-				if (i <= remaining) {
-					bar += "#";
-				} else {
-					bar += "_";
-				}
+				bar += i <= remaining ? "#" : "_";
 			}
 			bar += String.Format (" {0}%", CalculateHealth ());
 			return bar;
 		}
 
 		public int CalculateHealth() {
-			int hp = Convert.ToInt32 (((double)this.Health / StatInfo._Health) * 100); 
+			int hp = Convert.ToInt32 (((double)Health / StatInfo._Health) * 100); 
 			return (hp < 0) ? 0 : hp; // make sure health can't be negative
 		}
 

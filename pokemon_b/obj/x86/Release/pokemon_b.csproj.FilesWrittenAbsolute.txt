@@ -1,3 +1,6 @@
 /home/panda/Workspace/CSharp/pokemonConsoleGame/pokemon_b/obj/x86/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
 /home/panda/Workspace/CSharp/pokemonConsoleGame/pokemon_b/bin/Release/pokemon_b.dll
 /home/panda/Workspace/CSharp/pokemonConsoleGame/pokemon_b/obj/x86/Release/pokemon_b.dll
+/home/panda/Documents/CSharp/pokemonConsoleGame/pokemon_b/obj/x86/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/panda/Documents/CSharp/pokemonConsoleGame/pokemon_b/bin/Release/pokemon_b.dll
+/home/panda/Documents/CSharp/pokemonConsoleGame/pokemon_b/obj/x86/Release/pokemon_b.dll

@@ -4,9 +4,8 @@ namespace pokemon_b
 {
 	public class Player : Trainer
 	{
-		public Player (String playerName)
-			:base(playerName) {
-
+		public Player (EventHook eventHook, String playerName)
+			:base(eventHook, playerName) {
 		}
 
 		public override void PerformTurn(Trainer opponent) {
@@ -17,25 +16,13 @@ namespace pokemon_b
 					throw ex;
 				}
 			} else {
-				textGui (opponent);
-				//OnField.PerformAttack (opponent.OnField);
+				textGui (this, opponent);
+				//OnField.Pe rformAttack (opponent.OnField);
 			}
 		}
 
-		void textGui(Trainer opponent) {
-			Console.WriteLine("NUM\tNAME\t\tDMG\tTYPE");
-			foreach (Attack a in this.OnField.PokemonMovePool.Attacks) {
-				Console.WriteLine ("{0}\t{1}\t{2}\t{3}", OnField.PokemonMovePool.Attacks.IndexOf(a), a.Name,
-					a.Damage, a.AttackType);
-			}
-			Console.Write("Select Move: ");
-
-			string input = Console.ReadLine ();
-			int move = int.Parse (input);
-
-			Attack attack = OnField.PokemonMovePool.Attacks [move];
-
-			OnField.PerformAttack(opponent.OnField, attack);
+		void textGui(Trainer player, Trainer opponent) {
+			mEventHook.PlayerPerformTurn (player, opponent);
 		}
 	}
 }

@@ -6,11 +6,13 @@ namespace pokemon_b
 {
 	public class Trainer
 	{
+		public EventHook mEventHook;
 		public Pokemon OnField;
 		public List<Pokemon> Pokemons;
 		public String TrainerName;
-		public Trainer (String trainerName)
+		public Trainer (EventHook eventHook, String trainerName)
 		{
+			mEventHook = eventHook;
 			Pokemons = new List<Pokemon> ();
 			TrainerName = trainerName;
 		}
@@ -28,7 +30,7 @@ namespace pokemon_b
 		public void AddPokemon(IPokemon pokemon){
 			Pokemons.Add ((Pokemon)pokemon);
 		}
-
+			
 		public Pokemon GetNextUsablePokemon() {
 			Pokemon x;
 			try {
@@ -37,7 +39,7 @@ namespace pokemon_b
 			} catch (NullReferenceException) {
 				throw new InvalidOperationException();
 			}
-			this.trainerFontColour ();
+			trainerFontColour ();
 			Console.Write(TrainerName);
 			Console.ForegroundColor = ConsoleColor.White;
 			Console.Write(" sent out ");
