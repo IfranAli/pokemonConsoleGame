@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace pokemon_b
 {
-	public class Pokemon
+	public class Pokemon : IPokemon
 	{
 		public String Name;
 		public Stat StatInfo;
@@ -163,6 +163,15 @@ namespace pokemon_b
 				_Speed = speed;
 			}
 		}
+
+		#region IPokemon implementation
+
+		public string GetName ()
+		{
+			return Name;
+		}
+
+		#endregion
 	}
 }
 

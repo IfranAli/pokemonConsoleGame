@@ -2,22 +2,26 @@
 
 namespace pokemon_b
 {
-	class MainClass
+	public class BattleField
 	{
-		public static void Main (string[] args)
+		private EventHook mEventHook;
+		public BattleField (EventHook eventHook)
 		{
-			//var pg = new PokeGarden ();
+			mEventHook = eventHook;
+
+			var pokeGarden = new PokeGarden ();
+
 			// Assign Pokemon to Trainer object.
 			var red = new Player("Red");
 			red.AddPokemon(new PokeGarden.Bulbasaur());
 			red.AddPokemon (new PokeGarden.Charmander());
-			//red.AddPokemon(pg.Generate("MegaMewTwo", 80));
+			//red.AddPokemon(pokeGarden.Generate("MegaMewTwo", 80));
 			//red.AddPokemon(pg.Generate("Deoxys", 80));
 
 			var blue = new Trainer ("Blue");
 			blue.AddPokemon (new PokeGarden.Tirwig());
 			blue.AddPokemon (new PokeGarden.Zangoose());
-			//blue.AddPokemon(pg.Generate("Mew", 80));
+			//blue.AddPokemon(pokeGarden.Generate("Mew", 80));
 			//blue.AddPokemon(pg.Generate("Jirachi", 80));
 
 			// Pass Trainers to Battle object.

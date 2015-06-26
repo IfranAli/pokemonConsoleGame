@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{7D1E17E2-3548-4EFF-BECC-A7E97702B0CE}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>pokemon_b</RootNamespace>
-    <AssemblyName>pokemon_b</AssemblyName>
+    <ProjectGuid>{7AF7D66D-E79E-4E61-AF60-C43C93877496}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Hookin</RootNamespace>
+    <AssemblyName>Hookin</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -17,10 +17,11 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
     <Externalconsole>true</Externalconsole>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -32,22 +33,15 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Classes\Pokemon.cs" />
-    <Compile Include="Classes\Trainer.cs" />
-    <Compile Include="Classes\Battle.cs" />
-    <Compile Include="Classes\Attack.cs" />
-    <Compile Include="Classes\MovePool.cs" />
-    <Compile Include="Classes\Player.cs" />
-    <Compile Include="Classes\Interfaces\IPokemon.cs" />
-    <Compile Include="Classes\Facade\BattleField.cs" />
-    <Compile Include="Classes\Facade\EventHook.cs" />
-    <Compile Include="Classes\Facade\PokeGarden.cs" />
+    <Compile Include="UserInterface.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Classes\" />
-    <Folder Include="Classes\Interfaces\" />
-    <Folder Include="Classes\Facade\" />
+    <ProjectReference Include="..\pokemon_b\pokemon_b.csproj">
+      <Project>{7D1E17E2-3548-4EFF-BECC-A7E97702B0CE}</Project>
+      <Name>pokemon_b</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

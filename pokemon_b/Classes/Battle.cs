@@ -29,7 +29,7 @@ namespace pokemon_b
 			Trainer trainer = null;
 			Trainer trainer2 = null;
 			while (true) {
-				if(TurnsPassed == 0) {
+				if (TurnsPassed == 0) {
 					// Calculate fitst move by speed.
 					if (TrainerOne.OnField.StatInfo._Speed > TrainerTwo.OnField.StatInfo._Speed) {
 						trainer = TrainerOne;
@@ -38,6 +38,8 @@ namespace pokemon_b
 						trainer = TrainerTwo;
 						trainer2 = trainerOne;
 					}
+				} else {
+					
 				}
 					
 				if (turn (trainer, trainer2)) {
@@ -46,6 +48,12 @@ namespace pokemon_b
 					Console.ForegroundColor = ConsoleColor.White;
 					Console.Write ("Has Won!\n", trainer.TrainerName);
 					break;
+				}
+
+				if (trainer == TrainerOne) {
+					trainer = trainer2;
+				} else {
+					trainer = trainerTwo;
 				}
 			}
 

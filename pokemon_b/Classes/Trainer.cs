@@ -15,7 +15,6 @@ namespace pokemon_b
 			TrainerName = trainerName;
 		}
 
-
 		public void trainerFontColour() {
 			if (TrainerName.ToUpper() == "RED") {
 				Console.ForegroundColor = ConsoleColor.Red;
@@ -26,8 +25,8 @@ namespace pokemon_b
 			}
 		}
 
-		public void AddPokemon(Pokemon pokemon){
-			Pokemons.Add (pokemon);
+		public void AddPokemon(IPokemon pokemon){
+			Pokemons.Add ((Pokemon)pokemon);
 		}
 
 		public Pokemon GetNextUsablePokemon() {
@@ -51,7 +50,6 @@ namespace pokemon_b
 			if (OnField.isFainted ()) {
 				try {
 					GetNextUsablePokemon ();
-					throw new MyException();
 				} catch (InvalidOperationException ex) {
 					throw ex;
 				}

@@ -8,11 +8,10 @@ namespace pokemon_b
 		{
 			
 		}
-		public Pokemon Generate(String name, int level) {
+		public IPokemon Generate(String name, int level) {
 			Pokemon gen = new Pokemon(name, GetRandomStat(level));
 			gen.PokemonMovePool.AddAttack(new Attack.Earthquake());
 			gen.PokemonMovePool.AddAttack(new Attack.HighJumpKick());
-			//gen.Weakness.Add(Attack.Type.Fighting
 			Console.WriteLine (gen.getInfo ());
 			return gen;
 		}
@@ -76,14 +75,14 @@ namespace pokemon_b
 				Weakness.Add(Attack.Type.Water);
 			}
 		}
+
 		public class Zangoose : Pokemon {
-			public Zangoose ()
-				:base("Zangoose", new Stat(new IV(10,10,10,10,10,10), 50, 10,10,10,10,10,10)){
+			public Zangoose()
+				:base("Zangoose", new Stat(new IV(10, 10, 10, 10, 10, 10) ,50, 10, 10, 10, 10, 10, 10)){
 				PokemonMovePool.AddAttack(new Attack.Earthquake());
 				PokemonMovePool.AddAttack(new Attack.FireBlast());
-				Weakness.Add (Attack.Type.Fighting);
+				Weakness.Add(Attack.Type.Fighting);
 			}
 		}
 	}
 }
-

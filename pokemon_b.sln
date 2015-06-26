@@ -3,12 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pokemon_b", "pokemon_b\pokemon_b.csproj", "{7D1E17E2-3548-4EFF-BECC-A7E97702B0CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hookin", "Hookin\Hookin.csproj", "{7AF7D66D-E79E-4E61-AF60-C43C93877496}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7AF7D66D-E79E-4E61-AF60-C43C93877496}.Debug|x86.ActiveCfg = Debug|x86
+		{7AF7D66D-E79E-4E61-AF60-C43C93877496}.Debug|x86.Build.0 = Debug|x86
+		{7AF7D66D-E79E-4E61-AF60-C43C93877496}.Release|x86.ActiveCfg = Release|x86
+		{7AF7D66D-E79E-4E61-AF60-C43C93877496}.Release|x86.Build.0 = Release|x86
 		{7D1E17E2-3548-4EFF-BECC-A7E97702B0CE}.Debug|x86.ActiveCfg = Debug|x86
 		{7D1E17E2-3548-4EFF-BECC-A7E97702B0CE}.Debug|x86.Build.0 = Debug|x86
 		{7D1E17E2-3548-4EFF-BECC-A7E97702B0CE}.Release|x86.ActiveCfg = Release|x86
