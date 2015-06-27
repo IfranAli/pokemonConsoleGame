@@ -38,6 +38,7 @@ namespace pokemon_b
 				OnField = x;
 			} catch (NullReferenceException) {
 				throw new InvalidOperationException();
+				Console.WriteLine ("{0} is out of usable pokemon.", TrainerName);
 			}
 			trainerFontColour ();
 			Console.Write(TrainerName);
@@ -49,42 +50,15 @@ namespace pokemon_b
 		}
 
 		virtual public void PerformTurn(Trainer opponent) {
-			if (OnField.isFainted ()) {
-				try {
-					GetNextUsablePokemon ();
-				} catch (InvalidOperationException ex) {
-					throw ex;
+			var highestDMG = OnField.PokemonMovePool.getHighestDamage ();
+			var enemyweakness = OnField.PokemonMovePool.getEnemyWeakestTo (opponent.OnField);
+			if (enemyweakness != null) {
+				if ((enemyweakness.Damage * 2.0) > highestDMG.Damage) {
+					OnField.PerformAttack (opponent.OnField, enemyweakness);
+					return;
 				}
-			} else {
-				var highestDMG = OnField.PokemonMovePool.getHighestDamage ();
-				var enemyweakness = OnField.PokemonMovePool.getEnemyWeakestTo (opponent.OnField);
-				if (enemyweakness != null) {
-					if ((enemyweakness.Damage * 2.0) > highestDMG.Damage) {
-						OnField.PerformAttack (opponent.OnField, enemyweakness);
-						return;
-					}
-				}
-				OnField.PerformAttack (opponent.OnField, highestDMG);
 			}
-		}
-
-		public class MyException : Exception
-		{
-			public MyException ()
-			{
-			}
-			
-			public MyException (string message) : base (message)
-			{
-			}
-
-			public MyException (string message, Exception inner) : base (message, inner)
-			{
-			}
-			
-			protected MyException (System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base (info, context)
-			{
-			}
+			OnField.PerformAttack (opponent.OnField, highestDMG);
 		}
 	}
 }

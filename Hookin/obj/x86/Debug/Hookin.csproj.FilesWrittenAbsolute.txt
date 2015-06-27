@@ -6,3 +6,11 @@
 /home/panda/Documents/CSharp/pokemonConsoleGame/Hookin/bin/Debug/pokemon_b.dll
 /home/panda/Documents/CSharp/pokemonConsoleGame/Hookin/bin/Debug/pokemon_b.exe.mdb
 /home/panda/Documents/CSharp/pokemonConsoleGame/Hookin/bin/Debug/pokemon_b.dll.mdb
+/home/panda/Workspace/CSharp/pokemonConsoleGame/Hookin/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/panda/Workspace/CSharp/pokemonConsoleGame/Hookin/bin/Debug/Hookin.exe.mdb
+/home/panda/Workspace/CSharp/pokemonConsoleGame/Hookin/bin/Debug/Hookin.exe
+/home/panda/Workspace/CSharp/pokemonConsoleGame/Hookin/obj/x86/Debug/Hookin.exe
+/home/panda/Workspace/CSharp/pokemonConsoleGame/Hookin/obj/x86/Debug/Hookin.exe.mdb
+/home/panda/Workspace/CSharp/pokemonConsoleGame/Hookin/bin/Debug/pokemon_b.dll
+/home/panda/Workspace/CSharp/pokemonConsoleGame/Hookin/bin/Debug/pokemon_b.exe.mdb
+/home/panda/Workspace/CSharp/pokemonConsoleGame/Hookin/bin/Debug/pokemon_b.dll.mdb

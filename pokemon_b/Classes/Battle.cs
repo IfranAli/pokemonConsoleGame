@@ -4,7 +4,7 @@ namespace pokemon_b
 {
 	public class Battle
 	{
-		Trainer Red, Blue, LastMoved;
+		Trainer Red, Blue;
 		public int TurnsPassed;
 		private EventHook mEventHook; 
 		public Battle (EventHook eventHook, Trainer trainerOne, Trainer trainerTwo)
@@ -20,61 +20,55 @@ namespace pokemon_b
 			Red.GetNextUsablePokemon ();
 			trainerTwo.GetNextUsablePokemon ();
 
-			// Determine first to move by pokemon speed.
-			// If pokemon fainted earlier, determine first move by pokemon speed.
-			Trainer trainer = null;
-			Trainer trainer2 = null;
-			while (true) {
-				if (LastMoved == null || Red.OnField.isFainted() || Blue.OnField.isFainted()) {
-					var status = String.Format ("\t{0}:{1}\t{2}:{3}",
-						             Red.OnField.Name, Red.OnField.isFainted (),
-						             Blue.OnField.Name, Blue.OnField.isFainted ());
-					Console.Write ("\n\tChecking Who is faster.\n{0}\n", status);
-					// Calculate first move by speed.
-					if (Red.OnField.StatInfo._Speed > Blue.OnField.StatInfo._Speed) {
-						trainer = Red;
-						trainer2 = Blue;
-					} else {
-						trainer = Blue;
-						trainer2 = trainerOne;
-					}
-				}
+			gameLoop ();
+		}
 
-				LastMoved = trainer;
-				if (turn (trainer, trainer2)) {
-					trainer.trainerFontColour ();
-					Console.Write ("{0} ");
-					Console.ForegroundColor = ConsoleColor.White;
-					Console.Write ("{0} Has Won!\n", trainer.TrainerName);
-					break;
-				}
+		private void gameLoop() {
+			while (PerformTurnSet () != true) {
 
-				// No trainer should move twice in a row ( excluding some cases )
-				if (LastMoved == Blue) {
-					trainer = Red;
-					trainer2 = Blue;
-				} else {
-					trainer = Blue;
-					trainer2 = Red;
-				}
 			}
+		}
+
+		private Trainer GetFirstMoveTrainer(){
+			Console.Write ("\nRed:{0}\tBlue:{1}\n", Red.OnField.StatInfo._Speed, Blue.OnField.StatInfo._Speed);
+			if (Red.OnField.StatInfo._Speed > Blue.OnField.StatInfo._Speed) {
+				// Red is faster.
+				return Red;
+			} else {
+				// Blue is faster.
+				return Blue;
+			}
+		}
+
+
+		private Boolean PerformTurnSet() {
+			//Console.Clear ();
+			TurnsPassed++;
+			var x = GetFirstMoveTrainer ();
+			var y = (x.TrainerName.Equals(Red.TrainerName)) ? Blue : Red;
+			return (turn (x, y) | turn (y, x));
 		}
 
 		private Boolean turn(Trainer trainer, Trainer opponent) {
 			try {
-				TurnsPassed++;
-				trainer.trainerFontColour();
 				Console.WriteLine("\n{0} : Turn {1}\n{2}\n{3}",
 					trainer.TrainerName, TurnsPassed, trainer.OnField.Name,
 					trainer.OnField.GenHealthBar());
-				Console.ForegroundColor = ConsoleColor.White;
 				trainer.PerformTurn (opponent);
+				handleFainting();
 				return false;
 			} catch (InvalidOperationException) {
+				Console.Write ("{0} Has Won!\n", trainer.TrainerName);
 				return true;
-			} catch (Trainer.MyException) {
-				Console.WriteLine ("pkmn fainted!");
-				return false;
+			}
+		}
+
+		void handleFainting() {
+			if (Red.OnField.isFainted ()) {
+				Red.GetNextUsablePokemon ();
+			}
+			if (Blue.OnField.isFainted ()) {
+				Red.GetNextUsablePokemon ();
 			}
 		}
 	}
