@@ -25,12 +25,11 @@ namespace pokemon_b
 
 		private void gameLoop() {
 			while (PerformTurnSet () != true) {
-
 			}
 		}
 
 		private Trainer GetFirstMoveTrainer(){
-			Console.Write ("\nRed:{0}\tBlue:{1}\n", Red.OnField.StatInfo._Speed, Blue.OnField.StatInfo._Speed);
+			//Console.Write ("\nRed:{0}\tBlue:{1}\n", Red.OnField.StatInfo._Speed, Blue.OnField.StatInfo._Speed);
 			if (Red.OnField.StatInfo._Speed > Blue.OnField.StatInfo._Speed) {
 				// Red is faster.
 				return Red;
@@ -51,9 +50,7 @@ namespace pokemon_b
 
 		private Boolean turn(Trainer trainer, Trainer opponent) {
 			try {
-				Console.WriteLine("\n{0} : Turn {1}\n{2}\n{3}",
-					trainer.TrainerName, TurnsPassed, trainer.OnField.Name,
-					trainer.OnField.GenHealthBar());
+				mEventHook.OnPerformTurn(TurnsPassed, trainer, opponent);
 				trainer.PerformTurn (opponent);
 				handleFainting();
 				return false;
@@ -68,7 +65,7 @@ namespace pokemon_b
 				Red.GetNextUsablePokemon ();
 			}
 			if (Blue.OnField.isFainted ()) {
-				Red.GetNextUsablePokemon ();
+				Blue.GetNextUsablePokemon ();
 			}
 		}
 	}

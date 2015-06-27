@@ -39,6 +39,18 @@ namespace Hookin
 
 			player.OnField.PerformAttack(opponent.OnField, attack);
 		}
+
+		public void OnPerformTurn (int turnsPassed, Trainer player, Trainer opponent)
+		{
+			Console.WriteLine("\n{0} : Turn {1}\n{2}\n{3}",
+				player.TrainerName, turnsPassed, player.OnField.Name,
+				player.OnField.GenHealthBar());
+		}
+
+		public void HasWon (Trainer trainer)
+		{
+			throw new NotImplementedException ();
+		}
 		#endregion
 	}
 }
