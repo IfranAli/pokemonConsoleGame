@@ -17,18 +17,9 @@ namespace pokemon_b
 			TrainerName = trainerName;
 		}
 
-		public void trainerFontColour() {
-			if (TrainerName.ToUpper() == "RED") {
-				Console.ForegroundColor = ConsoleColor.Red;
-			} else if (TrainerName.ToUpper() == "BLUE") {
-				Console.ForegroundColor = ConsoleColor.Blue;
-			} else {
-				Console.ForegroundColor = ConsoleColor.White;
-			}
-		}
-
-		public void AddPokemon(IPokemon pokemon){
-			Pokemons.Add ((Pokemon)pokemon);
+		public void AddPokemon(Pokemon pokemon){
+			pokemon.mEventHook = mEventHook;
+			Pokemons.Add (pokemon);
 		}
 			
 		public Pokemon GetNextUsablePokemon() {
@@ -37,15 +28,14 @@ namespace pokemon_b
 				x = Pokemons.First (p => !p.isFainted());
 				OnField = x;
 			} catch (NullReferenceException) {
+				//Console.WriteLine ("{0} is out of usable pokemon.", TrainerName);
 				throw new InvalidOperationException();
-				Console.WriteLine ("{0} is out of usable pokemon.", TrainerName);
 			}
-			trainerFontColour ();
-			Console.Write(TrainerName);
-			Console.ForegroundColor = ConsoleColor.White;
-			Console.Write(" sent out ");
-			Console.Write("{0}\n", OnField.Name);
-			Console.ForegroundColor = ConsoleColor.White;
+			//Console.Write(TrainerName);
+			//Console.ForegroundColor = ConsoleColor.White;
+			//Console.Write(" sent out ");
+			//Console.Write("{0}\n", OnField.Name);
+			//Console.ForegroundColor = ConsoleColor.White;
 			return x;
 		}
 

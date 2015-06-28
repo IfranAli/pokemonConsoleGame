@@ -10,14 +10,29 @@ namespace pokemon_b
 		public int Health;
 		public List<Attack.Type> Weakness;
 		public Condition pkmnCondition;
+		public MovePool PokemonMovePool;
+		public EventHook mEventHook;
+		public Pokemon (String name, Stat stat)
+		{
+			Name = name;
+			StatInfo = stat;
+			Health = stat._Health;
+			PokemonMovePool = new MovePool (this);
+			Weakness = new List<Attack.Type> ();
+		}
+
+		public Pokemon (EventHook eventHook, String name, Stat stat) 
+			: this (name, stat) {
+			mEventHook = eventHook;
+		}
 
 		public void SetCondition(Condition c) {
 			if (pkmnCondition.Equals(c)) {
-				Console.WriteLine ("{0} is already {1}", Name, c);
+				mEventHook.HasMessage (String.Format("{0} is already {1}", Name, c));
 				return;
 			}
 			pkmnCondition = c;
-			Console.WriteLine ("{0} is {1}", Name, c);
+			mEventHook.HasMessage (String.Format ("{0} is {1}", Name, c));
 		}
 
 		public enum Condition
@@ -31,29 +46,18 @@ namespace pokemon_b
 			return Health < 1;
 		}
 
-		public MovePool PokemonMovePool;
-
-		public Pokemon (String name, Stat stat)
-		{
-			Name = name;
-			StatInfo = stat;
-			Health = stat._Health;
-			PokemonMovePool = new MovePool (this);
-			Weakness = new List<Attack.Type> ();
-		}
-
 		public void PerformAttack(Pokemon p, Attack attack) {
 			preMove ();
-			Console.WriteLine ("{0} Used {2} on {1}!", Name, p.Name, attack.Name);
-			attack.ApplyEffect (p);
+			mEventHook.HasMessage(String.Format("{0} Used {2} on {1}!", Name, p.Name, attack.Name));
 			p.TakeDamage (attack);
+			attack.ApplyEffect (p);
 		}
 
 		public void PerformAttack(Pokemon p){
 			preMove ();
 			Attack attack = PokemonMovePool.GetAttack ();
 
-			Console.WriteLine ("{0} Used {2} on {1}!", Name, p.Name, attack.Name);
+			mEventHook.HasMessage (String.Format ("{0} Used {2} on {1}!", Name, p.Name, attack.Name));
 			attack.ApplyEffect (p);
 			p.TakeDamage (attack);
 		}
@@ -61,13 +65,13 @@ namespace pokemon_b
 		void preMove() {
 			if (pkmnCondition.Equals (Condition.Burned)) {
 				Health -= 10;
-				Console.WriteLine ("{0} is badly burned.", Name);
+				mEventHook.HasMessage (String.Format ("{0} is badly burned.", Name));
 			}
 		}
 
 		public double getDamageMultiplier(Attack.Type type) {
 			if(Weakness.Contains(type)) {
-				Console.WriteLine("Super Effective! x2 Damage");
+				mEventHook.HasMessage("Super Effective! x2 Damage");
 				return 2.0;
 			}
 			return 1.0;
@@ -75,16 +79,16 @@ namespace pokemon_b
 
 		public void TakeRecoilDamage(Attack att, int dmg) {
 			Health -= dmg;
-			Console.WriteLine ("{0} took {1} recoil damage from {2}. HP: {3}%", Name, dmg, att.Name, CalculateHealth());
+			mEventHook.HasMessage (String.Format ("{0} took {1} recoil damage from {2}. HP: {3}%", Name, dmg, att.Name, CalculateHealth ()));
 		}
 			
 		public void TakeDamage(Attack attack) {
 			double multiplier = getDamageMultiplier (attack.AttackType);
 			int dmg = (int) (attack.Damage * multiplier);
 			Health -= dmg;
-			Console.WriteLine ("{0} took {1} Damage! HP: {2}%", Name, dmg, CalculateHealth());
+			mEventHook.HasMessage (String.Format("{0} took {1} Damage! HP: {2}%", Name, dmg, CalculateHealth ()));
 			if (isFainted()) {
-				Console.WriteLine ("{0} Fainted!", Name);
+				mEventHook.HasMessage (String.Format("{0} Fainted!", Name));
 			}
 		}
 

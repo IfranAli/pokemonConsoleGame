@@ -46,6 +46,11 @@ namespace Hookin
 		{
 			Console.Write ("{0} Has Won!\n", trainer.TrainerName);
 		}
+
+		public void HasMessage (string message)
+		{
+			throw new NotImplementedException ();
+		}
 		#endregion
 	}
 }

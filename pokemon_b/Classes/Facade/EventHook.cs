@@ -15,6 +15,8 @@ namespace pokemon_b
 
 		// Post-Battle
 		void HasWon(Trainer trainer);
+
+		void HasMessage(String message);
 	}
 }
 

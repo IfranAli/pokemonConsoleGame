@@ -5,11 +5,9 @@ namespace Hookin
 {
 	public class UserInterfaceNew : EventHook
 	{
-		int mConsoleWidth, mConsoleHeight;
 		Trainer mRed, mBlue;
 		public UserInterfaceNew () {
-			mConsoleHeight = Console.BufferHeight;
-			mConsoleWidth = Console.BufferWidth;
+			
 		}
 
 		#region EventHook implementation
@@ -58,22 +56,61 @@ namespace Hookin
 		{
 			
 		}
-
+			
+		public void HasMessage (string message)
+		{
+			clearSegment (0, 15);
+			clearSegment ((Console.BufferWidth - message.Length) / 2, 15);
+			drawBox (new Point(0,13), new Point(Console.BufferWidth, 17));
+			Console.SetCursorPosition ((Console.BufferWidth - message.Length) / 2, 15);
+			Console.Write (message);
+			Console.ReadKey ();
+		}
 		#endregion
 
 		void DrawHealthBars(Trainer trainer, Trainer opponent){
+			clearSegment (0, 0);
+			clearSegment (0, 1);
 			Console.SetCursorPosition (0, 0);
 			Console.Write (trainer.OnField.Name);
 			Console.SetCursorPosition (0, 1);
 			Console.Write (trainer.OnField.GenHealthBar());
 
-			Console.SetCursorPosition (mConsoleWidth -
+			Console.SetCursorPosition (Console.BufferWidth -
 				opponent.OnField.Name.Length, 0);
 			Console.Write (opponent.OnField.Name);
-			Console.SetCursorPosition (mConsoleWidth -
+			Console.SetCursorPosition (Console.BufferWidth -
 				opponent.OnField.GenHealthBar ().Length, 1);
 			Console.Write (opponent.OnField.GenHealthBar ());
 		}
+
+		void clearSegment(int left, int top) {
+			Console.SetCursorPosition (left, top);
+			Console.Write (new String (' ', Console.WindowWidth));
+			Console.SetCursorPosition (left, top);
+		}
+
+		public void drawBox(Point a, Point b) {
+			for (int i = a.top; i <= b.top; i++) {
+				Console.SetCursorPosition (a.left, i);
+				if (i == a.top || i == b.top) {
+					Console.Write (new String ('#', b.left));
+				} else {
+					Console.SetCursorPosition (a.left, i);
+					Console.Write ('#');
+					Console.SetCursorPosition (b.left -1, i);
+					Console.Write ('#');
+				}
+			}
+		}
+
+		public struct Point {
+			public int left, top;
+			public Point(int left, int top) {
+				this.left = left;
+				this.top = top;
+			}
+		};
 	}
 }
 
