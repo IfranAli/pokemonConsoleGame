@@ -155,7 +155,7 @@ namespace pokemon_b
 				_Def = def;
 				_SpDef = spDef;
 				_Att = att;
-				_SpAtt = att;
+				_SpAtt = spAtt;
 				_Speed = speed;
 			}
 		}

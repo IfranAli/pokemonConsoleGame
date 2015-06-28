@@ -1,16 +1,18 @@
 ﻿<Properties StartupItem="Hookin/Hookin.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="pokemon_b/Classes/Battle.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Hookin/UserInterfaceNew.cs">
     <Files>
-      <File FileName="pokemon_b/Classes/Battle.cs" Line="64" Column="16" />
-      <File FileName="pokemon_b/Classes/Trainer.cs" Line="62" Column="4" />
+      <File FileName="pokemon_b/Classes/Battle.cs" Line="13" Column="4" />
+      <File FileName="pokemon_b/Classes/Trainer.cs" Line="1" Column="1" />
       <File FileName="pokemon_b/Classes/Player.cs" Line="1" Column="1" />
       <File FileName="pokemon_b/Classes/Attack.cs" Line="1" Column="1" />
       <File FileName="pokemon_b/Classes/MovePool.cs" Line="1" Column="1" />
       <File FileName="pokemon_b/Classes/Facade/BattleField.cs" Line="1" Column="1" />
-      <File FileName="pokemon_b/Classes/Pokemon.cs" Line="1" Column="1" />
-      <File FileName="Hookin/UserInterface.cs" Line="45" Column="35" />
+      <File FileName="pokemon_b/Classes/Pokemon.cs" Line="29" Column="3" />
       <File FileName="pokemon_b/Classes/Facade/EventHook.cs" Line="17" Column="28" NotebookId="1" />
+      <File FileName="Hookin/UserInterface.cs" Line="35" Column="29" NotebookId="1" />
+      <File FileName="Hookin/UserInterfaceNew.cs" Line="76" Column="1" NotebookId="1" />
+      <File FileName="Hookin/Program.cs" Line="10" Column="46" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

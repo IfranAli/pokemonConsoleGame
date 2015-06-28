@@ -5,11 +5,6 @@ namespace Hookin
 {
 	public class UserInterface : EventHook
 	{
-		public UserInterface ()
-		{
-			
-		}
-
 		#region EventHook implementation
 
 		public void TurnPassed (int turns) {
@@ -49,7 +44,7 @@ namespace Hookin
 
 		public void HasWon (Trainer trainer)
 		{
-			throw new NotImplementedException ();
+			Console.Write ("{0} Has Won!\n", trainer.TrainerName);
 		}
 		#endregion
 	}

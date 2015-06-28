@@ -7,7 +7,7 @@ namespace Hookin
 	{
 		public static void Main (string[] args)
 		{
-			var x = new BattleField (new UserInterface());
+			var x = new BattleField (new UserInterfaceNew());
 
 		}
 	}

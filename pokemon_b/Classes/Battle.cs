@@ -6,7 +6,7 @@ namespace pokemon_b
 	{
 		Trainer Red, Blue;
 		public int TurnsPassed;
-		private EventHook mEventHook; 
+		EventHook mEventHook; 
 		public Battle (EventHook eventHook, Trainer trainerOne, Trainer trainerTwo)
 		{
 			mEventHook = eventHook;
@@ -23,12 +23,12 @@ namespace pokemon_b
 			gameLoop ();
 		}
 
-		private void gameLoop() {
-			while (PerformTurnSet () != true) {
+		void gameLoop() {
+			while (!PerformTurnSet ()) {
 			}
 		}
 
-		private Trainer GetFirstMoveTrainer(){
+		Trainer GetFirstMoveTrainer(){
 			//Console.Write ("\nRed:{0}\tBlue:{1}\n", Red.OnField.StatInfo._Speed, Blue.OnField.StatInfo._Speed);
 			if (Red.OnField.StatInfo._Speed > Blue.OnField.StatInfo._Speed) {
 				// Red is faster.
@@ -38,24 +38,24 @@ namespace pokemon_b
 				return Blue;
 			}
 		}
-
-
-		private Boolean PerformTurnSet() {
+			
+		Boolean PerformTurnSet() {
 			//Console.Clear ();
 			TurnsPassed++;
 			var x = GetFirstMoveTrainer ();
 			var y = (x.TrainerName.Equals(Red.TrainerName)) ? Blue : Red;
-			return (turn (x, y) | turn (y, x));
+
+			return turn (x, y) || turn (y, x);
 		}
 
-		private Boolean turn(Trainer trainer, Trainer opponent) {
+		Boolean turn(Trainer trainer, Trainer opponent) {
 			try {
 				mEventHook.OnPerformTurn(TurnsPassed, trainer, opponent);
 				trainer.PerformTurn (opponent);
 				handleFainting();
 				return false;
 			} catch (InvalidOperationException) {
-				Console.Write ("{0} Has Won!\n", trainer.TrainerName);
+				mEventHook.HasWon (trainer);
 				return true;
 			}
 		}
