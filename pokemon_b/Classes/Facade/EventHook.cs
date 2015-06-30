@@ -19,4 +19,3 @@ namespace pokemon_b
 		void HasMessage(String message);
 	}
 }
-

@@ -7,7 +7,7 @@ namespace Hookin
 	{
 		Trainer mRed, mBlue;
 		public UserInterfaceNew () {
-			
+			drawBox (new Point (0, 2), new Point( 10, 10));
 		}
 
 		#region EventHook implementation
@@ -28,6 +28,7 @@ namespace Hookin
 
 		public void PlayerPerformTurn (Trainer player, Trainer opponent)
 		{
+			
 			Console.WriteLine("NUM\tNAME\t\tDMG\tTYPE");
 			foreach (Attack a in player.OnField.PokemonMovePool.Attacks) {
 				Console.WriteLine ("{0}\t{1}\t{2}\t{3}", player.OnField.PokemonMovePool.Attacks.IndexOf(a), a.Name,
@@ -54,15 +55,15 @@ namespace Hookin
 
 		public void HasWon (Trainer trainer)
 		{
-			
+			HasMessage (String.Format ("{0} has won!", trainer.TrainerName));
 		}
 			
 		public void HasMessage (string message)
 		{
 			clearSegment (0, 15);
 			clearSegment ((Console.BufferWidth - message.Length) / 2, 15);
-			drawBox (new Point(0,13), new Point(Console.BufferWidth, 17));
-			Console.SetCursorPosition ((Console.BufferWidth - message.Length) / 2, 15);
+			drawBox (new Point(0,13), new Point(Console.BufferWidth / 2, 17));
+			Console.SetCursorPosition (((Console.BufferWidth / 2) - message.Length) / 2, 15);
 			Console.Write (message);
 			Console.ReadKey ();
 		}
@@ -86,7 +87,7 @@ namespace Hookin
 
 		void clearSegment(int left, int top) {
 			Console.SetCursorPosition (left, top);
-			Console.Write (new String (' ', Console.WindowWidth));
+			Console.Write (new String (' ', Console.BufferWidth));
 			Console.SetCursorPosition (left, top);
 		}
 
@@ -94,7 +95,7 @@ namespace Hookin
 			for (int i = a.top; i <= b.top; i++) {
 				Console.SetCursorPosition (a.left, i);
 				if (i == a.top || i == b.top) {
-					Console.Write (new String ('#', b.left));
+					Console.Write (new String ('#', b.left - a.left));
 				} else {
 					Console.SetCursorPosition (a.left, i);
 					Console.Write ('#');
