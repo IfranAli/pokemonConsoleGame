@@ -28,14 +28,10 @@ namespace pokemon_b
 				x = Pokemons.First (p => !p.isFainted());
 				OnField = x;
 			} catch (NullReferenceException) {
-				//Console.WriteLine ("{0} is out of usable pokemon.", TrainerName);
-				throw new InvalidOperationException();
+				mEventHook.HasMessage( String.Format ("{0} is out of usable pokemon.", TrainerName));
+				throw new InvalidOperationException ();
 			}
-			//Console.Write(TrainerName);
-			//Console.ForegroundColor = ConsoleColor.White;
-			//Console.Write(" sent out ");
-			//Console.Write("{0}\n", OnField.Name);
-			//Console.ForegroundColor = ConsoleColor.White;
+			mEventHook.HasMessage (String.Format("{0} sent out: {1}", TrainerName, OnField.GetName()));
 			return x;
 		}
 

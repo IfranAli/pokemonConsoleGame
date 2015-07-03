@@ -18,17 +18,18 @@ namespace Hookin
 			);
 		}
 
+		public int move;
 		public void PlayerPerformTurn (Trainer player, Trainer opponent)
 		{
-			Console.WriteLine("NUM\tNAME\t\tDMG\tTYPE");
-			foreach (Attack a in player.OnField.PokemonMovePool.Attacks) {
-				Console.WriteLine ("{0}\t{1}\t{2}\t{3}", player.OnField.PokemonMovePool.Attacks.IndexOf(a), a.Name,
-					a.Damage, a.AttackType);
-			}
-			Console.Write("Select Move: ");
-
-			string input = Console.ReadLine ();
-			int move = int.Parse (input);
+//			Console.WriteLine("NUM\tNAME\t\tDMG\tTYPE");
+//			foreach (Attack a in player.OnField.PokemonMovePool.Attacks) {
+//				Console.WriteLine ("{0}\t{1}\t{2}\t{3}", player.OnField.PokemonMovePool.Attacks.IndexOf(a), a.Name,
+//					a.Damage, a.AttackType);
+//			}
+//			Console.Write("Select Move: ");
+//
+//			string input = Console.ReadLine ();
+//			int move = int.Parse (input);
 
 			Attack attack = player.OnField.PokemonMovePool.Attacks [move];
 
@@ -49,7 +50,7 @@ namespace Hookin
 
 		public void HasMessage (string message)
 		{
-			throw new NotImplementedException ();
+			Console.WriteLine (message);
 		}
 		#endregion
 	}

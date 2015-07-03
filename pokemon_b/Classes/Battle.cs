@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace pokemon_b
 {
@@ -7,6 +8,7 @@ namespace pokemon_b
 		Trainer Red, Blue;
 		public int TurnsPassed;
 		EventHook mEventHook; 
+
 		public Battle (EventHook eventHook, Trainer trainerOne, Trainer trainerTwo)
 		{
 			mEventHook = eventHook;
@@ -19,17 +21,15 @@ namespace pokemon_b
 
 			Red.GetNextUsablePokemon ();
 			trainerTwo.GetNextUsablePokemon ();
-
-			gameLoop ();
 		}
 
-		void gameLoop() {
-			while (!PerformTurnSet ()) {
-			}
+		public Boolean Continue() {
+			return PerformTurnSet ();
 		}
 
 		Trainer GetFirstMoveTrainer(){
-			//Console.Write ("\nRed:{0}\tBlue:{1}\n", Red.OnField.StatInfo._Speed, Blue.OnField.StatInfo._Speed);
+			var x = String.Format ("\nRed:{0}\tBlue:{1}\n", Red.OnField.StatInfo._Speed, Blue.OnField.StatInfo._Speed);
+			mEventHook.HasMessage (x);
 			if (Red.OnField.StatInfo._Speed > Blue.OnField.StatInfo._Speed) {
 				// Red is faster.
 				return Red;
@@ -40,7 +40,6 @@ namespace pokemon_b
 		}
 			
 		Boolean PerformTurnSet() {
-			//Console.Clear ();
 			TurnsPassed++;
 			var x = GetFirstMoveTrainer ();
 			var y = (x.TrainerName.Equals(Red.TrainerName)) ? Blue : Red;
@@ -67,6 +66,15 @@ namespace pokemon_b
 			if (Blue.OnField.isFainted ()) {
 				Blue.GetNextUsablePokemon ();
 			}
+		}
+
+		private List<String> TurnLog;
+		public List<String> GetTurnLog() {
+			TurnLog = new List<String> ();
+			TurnLog.Add ("FIRST");
+			TurnLog.Add ("Second");
+			TurnLog.Add ("THIRD");
+			return TurnLog;
 		}
 	}
 }
