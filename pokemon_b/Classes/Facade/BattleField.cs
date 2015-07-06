@@ -19,6 +19,7 @@ namespace pokemon_b
 			Red = new Player(mEventHook, "Red");
 			Red.AddPokemon(new PokeGarden.Bulbasaur());
 			Red.AddPokemon (new PokeGarden.Charmander());
+			Red.AddPokemon ((Pokemon)pokeGarden.Generate ("Mew", 40));
 			//red.AddPokemon(pokeGarden.Generate("MegaMewTwo", 80));
 			//red.AddPokemon(pg.Generate("Deoxys", 80));
 
@@ -33,17 +34,20 @@ namespace pokemon_b
 
 		}
 
-		public Boolean ContinueBattle() {
-			Console.WriteLine("Continuing battle");
+		public List<TurnType> ContinueBattle() {
 			return mBattle.Continue ();
 		}
 
-		public List<String> GetCurrentTurnDetails() {
+		public List<TurnType> GetCurrentTurnDetails() {
 			return mBattle.GetTurnLog();
 		}
 
-		public Trainer GetPlayer() {
-			return Red;
+		public int GetTurnsPassed() {
+			return mBattle.GetTurnsPassed ();
+		}
+
+		public Player GetPlayer() {
+			return (Player)Red;
 		}
 	}
 }

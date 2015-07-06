@@ -1,11 +1,14 @@
 ﻿<Properties StartupItem="Hookin/Hookin.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Hookin/UserInterface.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="pokemon_b/Classes/Player.cs">
     <Files>
-      <File FileName="Hookin/UserInterface.cs" Line="25" Column="49" />
-      <File FileName="Hookin/Program.cs" Line="1" Column="1" />
-      <File FileName="pokemon_b/Classes/Facade/BattleField.cs" Line="1" Column="1" />
-      <File FileName="pokemon_b/Classes/Battle.cs" Line="1" Column="1" />
+      <File FileName="Hookin/UserInterface.cs" Line="8" Column="35" />
+      <File FileName="Hookin/Program.cs" Line="77" Column="110" />
+      <File FileName="pokemon_b/Classes/Facade/BattleField.cs" Line="47" Column="19" />
+      <File FileName="pokemon_b/Classes/Battle.cs" Line="79" Column="25" />
+      <File FileName="pokemon_b/Classes/SwitchPokemonRequest.cs" Line="190" Column="26" />
+      <File FileName="pokemon_b/Classes/Pokemon.cs" Line="97" Column="4" />
+      <File FileName="pokemon_b/Classes/Player.cs" Line="18" Column="7" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

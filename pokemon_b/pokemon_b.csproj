@@ -34,7 +34,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\Pokemon.cs" />
-    <Compile Include="Classes\Trainer.cs" />
     <Compile Include="Classes\Battle.cs" />
     <Compile Include="Classes\Attack.cs" />
     <Compile Include="Classes\MovePool.cs" />
@@ -43,6 +42,7 @@
     <Compile Include="Classes\Facade\BattleField.cs" />
     <Compile Include="Classes\Facade\EventHook.cs" />
     <Compile Include="Classes\Facade\PokeGarden.cs" />
+    <Compile Include="Classes\SwitchPokemonRequest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

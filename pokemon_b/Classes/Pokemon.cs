@@ -46,6 +46,13 @@ namespace pokemon_b
 			return Health < 1;
 		}
 
+		public TurnType PerformAttack(AttackTurn attackTurn) {
+			preMove ();
+			mEventHook.HasMessage (attackTurn.GetDescription ());
+			attackTurn.PerformTurn ();
+			return attackTurn;
+		}
+
 		public void PerformAttack(Pokemon p, Attack attack) {
 			preMove ();
 			mEventHook.HasMessage(String.Format("{0} Used {2} on {1}!", Name, p.Name, attack.Name));
@@ -69,10 +76,17 @@ namespace pokemon_b
 			}
 		}
 
+		public struct AttackEffectiveness {
+			public const double Super = 2.0;
+			public const double Normal = 1.0;
+			public const double NotVery = 0.5;
+			public const double NotAtAll = 0.0;
+		};
+
 		public double getDamageMultiplier(Attack.Type type) {
 			if(Weakness.Contains(type)) {
-				mEventHook.HasMessage("Super Effective! x2 Damage");
-				return 2.0;
+				mEventHook.HasMessage(String.Format("{0} Effective, {1}x Dmg.", AttackEffectiveness.Super, "Super"));
+				return AttackEffectiveness.Super;
 			}
 			return 1.0;
 		}
@@ -82,7 +96,7 @@ namespace pokemon_b
 			mEventHook.HasMessage (String.Format ("{0} took {1} recoil damage from {2}. HP: {3}%", Name, dmg, att.Name, CalculateHealth ()));
 		}
 			
-		public void TakeDamage(Attack attack) {
+		public AttackTurn.AttackResult TakeDamage(Attack attack) {
 			double multiplier = getDamageMultiplier (attack.AttackType);
 			int dmg = (int) (attack.Damage * multiplier);
 			Health -= dmg;
@@ -90,6 +104,10 @@ namespace pokemon_b
 			if (isFainted()) {
 				mEventHook.HasMessage (String.Format("{0} Fainted!", Name));
 			}
+			AttackTurn.AttackResult x = new AttackTurn.AttackResult ();
+			x.damageDelt = dmg;
+			x.effectiveness = multiplier;
+			return x;
 		}
 
 		public String GenHealthBar() {

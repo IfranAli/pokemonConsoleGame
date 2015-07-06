@@ -12,7 +12,7 @@ namespace pokemon_b
 			Pokemon gen = new Pokemon(name, GetRandomStat(level));
 			gen.PokemonMovePool.AddAttack(new Attack.Earthquake());
 			gen.PokemonMovePool.AddAttack(new Attack.HighJumpKick());
-			Console.WriteLine (gen.getInfo ());
+			//Console.WriteLine (gen.getInfo ());
 			return gen;
 		}
 

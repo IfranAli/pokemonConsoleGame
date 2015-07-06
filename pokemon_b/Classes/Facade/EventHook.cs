@@ -8,7 +8,7 @@ namespace pokemon_b
 
 		void JoinedBattle(Trainer trainer);
 
-		void PlayerPerformTurn (Trainer player, Trainer opponent);
+		TurnType PlayerPerformTurn (Trainer player, Trainer opponent);
 
 		// Pre-Turn
 		void OnPerformTurn(int turnsPassed, Trainer player, Trainer opponent);
