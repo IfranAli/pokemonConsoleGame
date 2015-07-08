@@ -1,0 +1,19 @@
+﻿<Window x:Class="GraphicalUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PokemonBattle" Height="350" Width="525" ResizeMode="NoResize">
+    <Grid>
+        <Image x:Name="BackgroundImage" Source="Images/Battle/GrassBackground.jpg" Stretch="UniformToFill"/>
+        <Image x:Name="RedPokemon" HorizontalAlignment="Left" Height="100" Margin="10,65,0,0" VerticalAlignment="Top" Width="100" Source="Images/Pokemon/001.png"/>
+        <Image x:Name="BluePokemon" HorizontalAlignment="Left" Height="100" Margin="419,65,0,0" VerticalAlignment="Top" Width="100" Source="Images/Pokemon/001.png"/>
+        <DockPanel Margin="0,229,0,0">
+            <StackPanel x:Name="Attacks" HorizontalAlignment="Left" VerticalAlignment="Top" Width="136" Height="93">
+                <Button x:Name="Attack1" Content="Button" Click="Attack1_Click" />
+                <Button x:Name="Attack2" Content="Button"/>
+                <Button x:Name="Attack3" Content="Button"/>
+                <Button x:Name="Attack4" Content="Button"/>
+            </StackPanel>
+            <ListBox Name="Updates" DisplayMemberPath="Description"></ListBox>
+        </DockPanel>
+    </Grid>
+</Window>

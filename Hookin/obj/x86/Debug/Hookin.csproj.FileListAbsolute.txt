@@ -1,0 +1,7 @@
+C:\Users\dragoneon\Documents\GitHub\pokemonConsoleGame\Hookin\bin\Debug\Hookin.exe
+C:\Users\dragoneon\Documents\GitHub\pokemonConsoleGame\Hookin\bin\Debug\Hookin.pdb
+C:\Users\dragoneon\Documents\GitHub\pokemonConsoleGame\Hookin\bin\Debug\pokemon_b.dll
+C:\Users\dragoneon\Documents\GitHub\pokemonConsoleGame\Hookin\bin\Debug\pokemon_b.pdb
+C:\Users\dragoneon\Documents\GitHub\pokemonConsoleGame\Hookin\obj\x86\Debug\Hookin.csprojResolveAssemblyReference.cache
+C:\Users\dragoneon\Documents\GitHub\pokemonConsoleGame\Hookin\obj\x86\Debug\Hookin.exe
+C:\Users\dragoneon\Documents\GitHub\pokemonConsoleGame\Hookin\obj\x86\Debug\Hookin.pdb
