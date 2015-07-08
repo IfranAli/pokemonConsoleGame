@@ -20,7 +20,6 @@ namespace Hookin
 
 			Console.WriteLine ("Pokemon Battle Simulator.");
 
-
 			while (!exitGame) {
 				Console.WriteLine("press 'a 'to continue.");
 				var y = Console.ReadKey ();
