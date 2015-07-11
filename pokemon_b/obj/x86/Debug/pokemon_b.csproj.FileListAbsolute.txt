@@ -1,4 +1,5 @@
 C:\Users\dragoneon\Documents\GitHub\pokemonConsoleGame\pokemon_b\bin\Debug\pokemon_b.dll
 C:\Users\dragoneon\Documents\GitHub\pokemonConsoleGame\pokemon_b\bin\Debug\pokemon_b.pdb
+C:\Users\dragoneon\Documents\GitHub\pokemonConsoleGame\pokemon_b\obj\x86\Debug\pokemon_b.csprojResolveAssemblyReference.cache
 C:\Users\dragoneon\Documents\GitHub\pokemonConsoleGame\pokemon_b\obj\x86\Debug\pokemon_b.dll
 C:\Users\dragoneon\Documents\GitHub\pokemonConsoleGame\pokemon_b\obj\x86\Debug\pokemon_b.pdb

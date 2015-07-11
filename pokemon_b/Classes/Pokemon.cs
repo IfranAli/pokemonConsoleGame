@@ -189,6 +189,14 @@ namespace pokemon_b
 			return Name;
 		}
 
+        public String _Name {
+            get {
+                return Name;
+            }
+            set {
+                Name = value;
+            }
+        }
 		#endregion
 	}
 }
